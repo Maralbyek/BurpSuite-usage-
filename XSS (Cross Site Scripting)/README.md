@@ -1,1 +1,1 @@
-# Yet to be explain further within few days
+# Yet to be explained further within few days
