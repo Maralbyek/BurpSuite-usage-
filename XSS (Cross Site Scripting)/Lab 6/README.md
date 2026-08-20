@@ -12,6 +12,14 @@ This project documents a PortSwigger Web Security Academy lab demonstrating a DO
 - **Status:** Solved
 - **Target Function:** Home page auto-scroll functionality
 
+## Solution
+
+1. Identify the vulnerable jQuery selector using `location.hash`.
+2. Open the exploit server from the lab banner.
+3. Place the malicious iframe in the **Body** section.
+4. Store the exploit and use **View exploit** to verify the payload.
+5. Click **Deliver to victim** to complete the lab.
+
 ## Payload Used
 
 ```html
