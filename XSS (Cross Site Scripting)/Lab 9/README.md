@@ -10,6 +10,14 @@ This project documents a PortSwigger Web Security Academy lab demonstrating a re
 - **Status:** Solved
 - **Encoding:** Angle brackets HTML-encoded
 
+## Solution
+
+1. Submit a random alphanumeric string in the search box.
+2. Use Burp Suite to inspect the request and response.
+3. Observe that the input is reflected inside a JavaScript string.
+4. Replace the input with the payload below to break out of the JavaScript string.
+5. Open the resulting URL to trigger the alert.
+
 ## Payload Used
 
 ```javascript
