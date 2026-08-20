@@ -11,6 +11,15 @@ This project documents a PortSwigger Web Security Academy lab demonstrating a DO
 - **Status:** Solved
 - **Target Function:** Search functionality
 
+## Solution
+
+1. Enter the following payload into the search box:
+   `<img src=1 onerror=alert(1)>`
+2. Click **Search**.
+3. The search input is inserted into the page using the `innerHTML` sink.
+4. The invalid image source causes an error.
+5. The `onerror` event handler executes `alert(1)`.
+
 ## Payload Used
 
 ```html
