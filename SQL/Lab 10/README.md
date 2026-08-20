@@ -17,13 +17,13 @@ The application was vulnerable to SQL injection through the `category` parameter
 ## Solution
 
 First, I used Burp Suite to intercept and modify the request. I confirmed that the query returned **two columns**, with only the second column accepting text:
-
+```SQL
     ' UNION SELECT NULL,'abc'--
-
+```
 Since only one column could display text, I combined the `username` and `password` values into a single column using the `||` concatenation operator:
-
+```SQL
     ' UNION SELECT NULL,username||'~'||password FROM users--
-
+```
 The `~` character was used as a separator between the username and password, making the retrieved values easier to identify in the response.
 
 The response displayed the usernames and passwords from the `users` table in a single column. I located the credentials for the **administrator** account and used them to log in, completing the lab.
