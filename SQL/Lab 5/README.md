@@ -17,23 +17,23 @@ The application was vulnerable to SQL injection through the `category` parameter
 ## Solution
 
 First, I used Burp Suite to intercept and modify the request. I confirmed that the query returned **two columns**, both of which could contain text:
-
+```SQL
     ' UNION SELECT 'abc','def'--
-
+```
 I then enumerated the database tables using:
-
+```SQL
     ' UNION SELECT table_name,NULL FROM information_schema.tables--
-
+```
 After identifying the table containing the user credentials, I retrieved its column names using:
-
+```SQL
     ' UNION SELECT column_name,NULL FROM information_schema.columns WHERE table_name='users_abcdef'--
-
+```
 This revealed the columns containing the usernames and passwords.
 
 Finally, I retrieved the stored credentials using:
-
+```SQL
     ' UNION SELECT username_abcdef,password_abcdef FROM users_abcdef--
-
+```
 The administrator username and password were displayed in the response. I used the retrieved password to log in as the **administrator** user and complete the lab.
 
 ## Key Learning
