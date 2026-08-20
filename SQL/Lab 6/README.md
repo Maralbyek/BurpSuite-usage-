@@ -17,23 +17,23 @@ The application was vulnerable to SQL injection through the `category` parameter
 ## Solution
 
 First, I used Burp Suite to intercept and modify the request. I confirmed that the query returned **two columns**, both of which could contain text. Since this was an Oracle database, the `dual` table was required:
-
+```SQL
     ' UNION SELECT 'abc','def' FROM dual--
-
+```
 I then enumerated the available tables using Oracle's `all_tables` view:
-
+```SQL
     ' UNION SELECT table_name,NULL FROM all_tables--
-
+```
 After identifying the table containing the user credentials, I retrieved its column names using `all_tab_columns`:
-
+```SQL
     ' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name='USERS_ABCDEF'--
-
+```
 This revealed the columns containing the usernames and passwords.
 
 Finally, I retrieved the stored credentials using:
-
+```SQL
     ' UNION SELECT USERNAME_ABCDEF,PASSWORD_ABCDEF FROM USERS_ABCDEF--
-
+```
 The response displayed the usernames and passwords, including the credentials for the **administrator** account. I used the retrieved password to log in as the administrator and complete the lab.
 
 ## Key Learning
