@@ -15,13 +15,13 @@ The application was vulnerable to SQL injection through the `category` parameter
 ## Solution
 
 First, I used Burp Suite to intercept and modify the request. I determined that the original query returned **two columns**, and both columns were compatible with text data:
-
+```SQL
     ' UNION SELECT 'abc','def'--
-
+```
 The database contained a `users` table with `username` and `password` columns. I used the following payload to retrieve the stored credentials:
-
+```SQL
     ' UNION SELECT username,password FROM users--
-
+```
 The response displayed the usernames and passwords from the `users` table. I located the credentials for the **administrator** account and used them to log in, completing the lab.
 
 ## Key Learning
