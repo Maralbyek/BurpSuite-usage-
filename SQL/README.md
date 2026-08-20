@@ -88,11 +88,11 @@ The username and password were returned together with `~` used as a separator.
 I also practiced SQL injection where the application did not directly display the query results but returned detailed database error messages.
 
 I used the vulnerable `TrackingId` cookie to test the injection.
-```HTML
+```SPL
     TrackingId=ogAZZfxtOKUELbuJ'
 ```
 I then used SQL comments to make the query syntactically valid.
-```HTML
+```SPL
     TrackingId=ogAZZfxtOKUELbuJ'--
 ```
 I used `CAST()` to force database values into an error message.
