@@ -19,4 +19,5 @@ This project documents a PortSwigger Web Security Academy lab demonstrating a re
 4. Test the following input:
 
 ```javascript
-test'payload
+</script><script>alert(1)</script>
+```
