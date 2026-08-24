@@ -1,14 +1,47 @@
 # PortSwigger Web Security Academy Labs
 
-This project documents my practical work through the PortSwigger Web Security Academy, focusing primarily on Cross-Site Scripting (XSS) vulnerabilities and the different contexts in which user-controlled input can be executed.
+This repository documents my practical cybersecurity labs completed through the **PortSwigger Web Security Academy**.
 
-The labs cover reflected, stored, and DOM-based XSS vulnerabilities, as well as techniques for bypassing common input encoding and filtering mechanisms.
+The purpose of this project is to build practical web application security skills by identifying, exploiting, and understanding different classes of vulnerabilities in controlled laboratory environments.
 
 ## Overview
 
-The main objective of these labs was to understand how XSS vulnerabilities occur when untrusted user input reaches an unsafe HTML or JavaScript context.
+The labs cover multiple areas of web application security, including:
 
-The exercises covered:
+- Cross-Site Scripting (XSS)
+- SQL Injection (SQLi)
+- Authentication vulnerabilities
+- Access control vulnerabilities
+- Business logic vulnerabilities
+- Server-side request forgery (SSRF)
+- Cross-site request forgery (CSRF)
+- File upload vulnerabilities
+- Path traversal
+- OS command injection
+- Information disclosure
+- API vulnerabilities
+- Web cache poisoning
+- HTTP request smuggling
+- WebSockets vulnerabilities
+- XML External Entity (XXE) injection
+- Server-side template injection (SSTI)
+- Insecure deserialization
+- Prototype pollution
+- Race conditions
+- CORS vulnerabilities
+- Clickjacking
+- JWT vulnerabilities
+- OAuth authentication vulnerabilities
+- GraphQL API vulnerabilities
+- Web LLM attacks
+- LLM API vulnerabilities
+- Excessive agency in LLM applications
+
+## Learning Areas
+
+### Cross-Site Scripting
+
+The XSS labs cover different execution contexts and techniques, including:
 
 - Reflected XSS
 - Stored XSS
@@ -18,26 +51,132 @@ The exercises covered:
 - HTML-context XSS
 - HTML attribute injection
 - JavaScript string injection
-- JavaScript template literal injection
-- DOM XSS using `document.write`
-- DOM XSS using `innerHTML`
-- DOM XSS using jQuery sinks
-- XSS through `location.search`
-- XSS through `location.hash`
-- XSS through event handlers
-- XSS in `href` attributes
-- XSS in canonical link tags
+- Template literal injection
+- Event handler injection
+- `href` attribute injection
+- DOM sinks such as `document.write` and `innerHTML`
+- jQuery-based DOM XSS
 - AngularJS expression injection
-- XSS filter and WAF bypass techniques
 - SVG-based XSS
-- Custom HTML element XSS
+- XSS filter and WAF bypasses
 
-## Sources and Sinks
+### SQL Injection
 
-A major focus of the labs was understanding the relationship between an attacker-controlled **source** and a dangerous **sink**.
+The SQL injection labs cover techniques such as:
 
-Common sources encountered included:
+- Authentication bypass
+- Database enumeration
+- UNION-based SQL injection
+- Blind SQL injection
+- Boolean-based SQL injection
+- Time-based SQL injection
+- Error-based SQL injection
+- SQL injection through different application contexts
 
-```javascript
-location.search
-location.hash
+### Authentication
+
+Authentication labs focus on weaknesses in login and account-management mechanisms, including:
+
+- Username enumeration
+- Brute-force attacks
+- Password reset vulnerabilities
+- Authentication bypass
+- Multi-factor authentication weaknesses
+- Session-related vulnerabilities
+
+### Access Control
+
+These labs focus on vulnerabilities caused by incorrect authorization controls, including:
+
+- IDOR vulnerabilities
+- Horizontal privilege escalation
+- Vertical privilege escalation
+- Access control bypasses
+- Missing authorization checks
+
+### Server-Side Vulnerabilities
+
+The learning path also covers server-side vulnerabilities such as:
+
+- SSRF
+- OS command injection
+- Path traversal
+- File upload vulnerabilities
+- XXE
+- SSTI
+- Insecure deserialization
+- Server-side prototype pollution
+
+### Client-Side Vulnerabilities
+
+Client-side security topics include:
+
+- XSS
+- CSRF
+- Clickjacking
+- CORS
+- DOM-based vulnerabilities
+- WebSockets security
+
+### API Security
+
+API-focused labs cover vulnerabilities involving:
+
+- API endpoint discovery
+- Broken access control
+- Parameter manipulation
+- API authentication
+- GraphQL
+- API-specific attack surfaces
+
+### Web LLM Attacks
+
+The Web LLM security labs cover vulnerabilities introduced when large language models are connected to application functionality and APIs.
+
+Topics include:
+
+- LLM attack surfaces
+- Prompt injection
+- Indirect prompt injection
+- Exploiting LLM APIs
+- Excessive agency
+- LLM API function abuse
+- Attacks involving connected tools and plugins
+
+For example, one lab demonstrated excessive agency where an LLM had access to a Debug SQL API capable of executing database commands.
+
+## Tools Used
+
+The labs are primarily performed using:
+
+- **Burp Suite**
+- **Burp Repeater**
+- **Burp Intruder**
+- **Burp Proxy**
+- Browser Developer Tools
+- HTTP requests
+- JavaScript
+- SQL
+
+## Methodology
+
+For each lab, I generally follow this process:
+
+```text
+Understand the vulnerability
+        ↓
+Identify the attack surface
+        ↓
+Find the source / entry point
+        ↓
+Identify the vulnerable sink or functionality
+        ↓
+Test input behavior
+        ↓
+Analyze filtering / encoding
+        ↓
+Develop an exploit
+        ↓
+Verify the vulnerability
+        ↓
+Document the solution
